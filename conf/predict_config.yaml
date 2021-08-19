@@ -1,0 +1,16 @@
+model:
+    #loc: '../notebooks/'
+    loc: '../files/data/training_sets/'
+    #file: 'FE_v01.csv'
+    file: 'training_set_v1_6.csv'
+    champion: '87/8e79a1deb0894bf8bf65a04f7b725087/artifacts/model/model.pkl'
+
+features:
+    target: ['A4A_right']
+    predictor: ['avg_d_kbps', 'avg_u_kbps', 'mean_ghm', 'avg_rad_mean',
+    'cf_cvg_mean', 'slope_avg_rad', 'slope_cf_cvg', 'slope_month_avg_rad',
+    'slope_monthcf_cvg', 'estimate_mau', 'population']
+
+country: 'Brazil'
+country_3digit: 'bra'
+country_pop: 212559409
