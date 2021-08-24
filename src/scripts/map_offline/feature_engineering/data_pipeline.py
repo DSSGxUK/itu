@@ -43,6 +43,8 @@ class FeatureEngineering():
                 self.school_data = self.join_by_kdtree()
             
             self.school_data.to_csv(self.data_dir + 'school_loc/school_data_' + self.country_code + '.csv', index= False)
+        
+        print('School dataset is initialized, length of the dataset is ' + str(len(self.school_data)) + '!')
 
 
     def load_feature(self, feature):
@@ -156,30 +158,29 @@ class FeatureEngineering():
             print('Merge between dataframes using common school ID failed.')
         #print('Rows left after merge:', len(self.school_data.iterrows()))
 
+    # construct kdtree of feature locations
+    def build_tree(self, centroids):
+        """
+        Construct KD tree of locations to be queried by school locations
+        :param centroids: locations corresponding to feature values
+        :return: tree
+        """
+        print('Constructing KD tree..')
+        tree = KDTree(centroids, leaf_size=2)
+        with open(r"kdtreeOfCentroidsOfTiles.pickle", "wb") as output_file:
+            pickle.dump(tree, output_file)
+
+        return tree
 
     def join_by_kdtree(self, df, sub_features):
             print('Mapping features to schools by KDtree...')
 
-            # construct kdtree of feature locations
-            def build_tree(centroids):
-                """
-                Construct KD tree of locations to be queried by school locations
-                :param centroids: locations corresponding to feature values
-                :return: tree
-                """
-                tree = KDTree(centroids, leaf_size=2)
-                with open(r"kdtreeOfCentroidsOfTiles.pickle", "wb") as output_file:
-                    pickle.dump(tree, output_file)
-
-                return tree
-
             centroids = self.get_centroids(df)
 
             try:
-                print('Building kdtree..')
-                tree = build_tree(centroids)
+                tree = self.build_tree(centroids)
             except RuntimeError:
-                print('Could not built location tree. "centroids" must be erroneous.')
+                print('Could not construct location tree. "centroids" must be erroneous.')
 
             for feature in sub_features:
                 self.school_data[feature] = np.zeros(len(self.school_data.source_school_id))
@@ -276,6 +277,12 @@ class FeatureEngineering():
                 feature_data[feature] = eval(feature.title() + 'Data("' + self.country_code + '")').data
         
         return feature_data
+
+    def get_population_connected(self):
+
+        centroids = self.get_centroids(self.school_data)
+        tree = self.build_tree(centroids)
+        
 
 
     def save_training_set(self):

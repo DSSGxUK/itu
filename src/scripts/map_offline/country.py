@@ -5,6 +5,8 @@ import shapely
 from urllib.request import urlopen
 shapely.speedups.disable()
 
+from feature_engineering import configs
+
 """COUNTRY CLASS"""
 class Country:
 
@@ -20,7 +22,7 @@ class Country:
     """sets geodata and country_name attributes"""
     def set_country_geometry(self):
         try:
-            countries = gp.read_file('../../../data/geodata/countries.json') ### Please edit the wd to your countries.json file dir!
+            countries = gp.read_file(configs.WD + 'data/geodata/countries.json') ### Please edit the wd to your countries.json file dir!
         except:
             with urlopen('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json') as response:
                 countries = gp.read_file(response)

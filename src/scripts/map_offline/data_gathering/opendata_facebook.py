@@ -1,6 +1,5 @@
 from facebook_business.adobjects.adaccount import AdAccount
 from facebook_business.api import FacebookAdsApi
-from tqdm import tqdm
 from math import ceil
 import time
 import pandas as pd
@@ -9,17 +8,20 @@ import numpy as np
 
 
 def fb_api_init(access_token, ad_account_id):
-    print('Initializing the Facebook Ads API...')
-    try:
-        api = FacebookAdsApi.init(access_token=access_token)
-    except:
-        raise ValueError('Unable to initialize due to invalid access token!')
+    print('Initializing the Facebook Marketing API...')
+    api = FacebookAdsApi.init(access_token=access_token)
+    my_account = AdAccount(ad_account_id)
 
     try:
-        my_account = AdAccount(ad_account_id)
-    except:
-        raise ValueError('Unable to initialize due to invalid ad account id!')
-    
+        test = my_account.get_ads()
+    except Exception as e:
+        if e._api_error_code == 190:
+            raise ValueError('Unable to initialize due to invalid or expired access token!')
+        elif e._api_error_code == 100:
+            raise ValueError('Unable to initialize due to invalid ad account id!')
+        else:
+            raise RuntimeError('Unable to initialize Facebook Marketing API, please check you credentials!')
+
     return api, my_account
         
 
@@ -59,13 +61,13 @@ def get_delivery_estimate(df, access_token, ad_account_id, call_limit, radius):
             try:
                 est = point_delivery_estimate(my_account, school[1].latitude, school[1].longitude, radius)
             except Exception as e:
-                if 'There have been too many calls' in str(e):
+                if e._api_error_code == 80004:
                     print('There have been too many calls!\nStopped at source school id: ' + str(school[1].source_school_id))
                     break
                 est = [0, 0, False]
             
             [estimate_dict[j].append(i) for i,j in zip(out+list(est), estimate_dict.keys())]
-            
+
         print('Done! Hold for one hour!\nTotal number of requests: ' + str(api._num_requests_attempted) + '\nNumber of remaining chunks: ' + str(no_chunks - c_no - 1))
         time.sleep(3600)
 

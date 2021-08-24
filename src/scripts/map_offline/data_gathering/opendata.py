@@ -16,9 +16,9 @@ from data_gathering.opendata_satellite import *
 """OPENDATA SUPERCLASS"""
 class OpenData:
 
-    def __init__(self, country_code, data=None, base_wd = '../../../data/'):
+    def __init__(self, country_code, data=None, base_wd = configs.WD + 'data/'):
         self.data = data
-        self.base_wd = base_wd  ### Please edit the base wd to your data folder!
+        self.base_wd = base_wd  
         self.country_code = country_code
         self.set_country_geo()
 

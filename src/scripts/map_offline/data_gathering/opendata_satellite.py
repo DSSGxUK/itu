@@ -136,7 +136,7 @@ def get_satellite_data(collection_band_dict, locations, json_key_path, ee_servic
     gee_init(json_key_path, ee_service_account)
     df_sat = pd.DataFrame()
     no_chunks = ceil(len(locations)/max_call_size)
-    print('Satellite data will be read in total of ' + str(no_chunks) + ' chunks!')
+    print('Satellite data will be read in total of ' + str(no_chunks) + ' chunk(s)!')
     for c_no, chunk in enumerate(np.array_split(locations, no_chunks)):
         
         print('Getting satellite data for the chunk ' + str(c_no) + '...')

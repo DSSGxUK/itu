@@ -1,6 +1,7 @@
 
 """LOAD DEPENDENCIES"""
 from bs4 import BeautifulSoup, SoupStrainer
+from pandas._config import config
 import savReaderWriter as savr
 import httplib2
 from tqdm import tqdm
@@ -12,7 +13,6 @@ import os
 """LOAD MODULES"""
 from country import *
 from data_gathering.opendata_utils import *
-from feature_engineering import configs
 
 
 """SURVEY CLASS AS SUBCLASS OF COUNTRY"""
@@ -33,8 +33,8 @@ class Survey(Country):
 """CLASS THAT HOLDS SURVEY DATA FOR BRAZIL"""
 class BRA_Survey(Survey):
 
-    def __init__(self, wd = '../../../data/survey/Brazil/'):
-        self.wd = wd ### Please edit the wd to your data folder!
+    def __init__(self, wd = configs.WD + 'data/survey/Brazil/'):
+        self.wd = wd
         self.data = self.set_survey_data()
 
 
@@ -110,7 +110,7 @@ class BRA_Survey(Survey):
 """CLASS THAT HOLDS SURVEY DATA FOR THAILAND"""
 class THA_Survey(Survey):
 
-    def __init__(self, wd = '../../../data/survey/Thailand/'):
+    def __init__(self, wd = configs.WD + 'data/survey/Thailand/'):
         self.wd = wd
         self.data = self.set_survey_data()
 
@@ -128,10 +128,10 @@ class THA_Survey(Survey):
         else:
 
             # reading province shape files
-            if os.path.exists('../../../data/geodata/tha_pro.csv'):
+            if os.path.exists(self.wd + '../../geodata/tha_pro.csv'):
                 print('Reading province data for Thailand...')
                 try:
-                    provinces = pd.read_csv('../../../data/geodata/tha_pro.csv')
+                    provinces = pd.read_csv(self.wd + '../../geodata/tha_pro.csv')
                     provinces = df_to_gdf(provinces)
                 except:
                     raise RuntimeError('Unable to read province data!')
@@ -169,7 +169,7 @@ class THA_Survey(Survey):
 
 class PHL_Survey(Survey):
 
-    def __init__(self, wd = '../../../data/survey/Philippines/'):
+    def __init__(self, wd = configs.WD + 'data/survey/Philippines/'):
         self.wd = wd
         self.data = self.set_survey_data()
 
@@ -186,10 +186,10 @@ class PHL_Survey(Survey):
         else:
 
             # reading barangay shape files
-            if os.path.exists('../../../data/geodata/phl_brgy'):
+            if os.path.exists(self.wd + '../../geodata/phl_brgy'):
                 print('Reading barangay shapefiles for Philippines...')
                 try:
-                    brgys = gp.read_file('../../../data/geodata/phl_brgy')
+                    brgys = gp.read_file(self.wd + '../../geodata/phl_brgy')
                     brgys[['prov', 'cit_mun', 'brgy']] = [[i.upper(), j.upper(), k.upper()] for i, j, k in zip(brgys.NAME_1, brgys.NAME_2, brgys.NAME_3)]
                     brgys = brgys[['prov', 'cit_mun', 'brgy', 'geometry']]
                 except:

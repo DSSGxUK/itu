@@ -1,23 +1,23 @@
+
+"""load data_pipeline"""
 from feature_engineering.data_pipeline import *
 
 
-"""Initialize the feature engineering class!"""
+"""Initialize the feature engineering class; set the school data"""
 itu = FeatureEngineering()
 
 
-"""
-Call opendata classes of features listed in configs.FEATURES, join them to schools  
-"""
+"""Shows the school dataset"""
+# itu.school_data 
+
+
+"""Calls OpenData classes of features listed in configs.FEATURES, joins them to school data"""
 itu.set_training_data()
 
 
-"""
-Saves the complete dataset!
-"""
+"""Saves the training set with features"""
 itu.save_training_set()
 
 
-"""
-Call opendata classes of features listed in configs.FEATURES and return raw data as dictionary with feature names as keys   
-"""
+"""Calls OpenData classes of features listed in configs.FEATURES and returns dictionary with feature names as keys and datasets as values"""
 opendata = itu.get_opendata()

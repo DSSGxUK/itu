@@ -12,10 +12,11 @@ from country import *
 from data_gathering.opendata_scrap import osm_to_json, get_osm_schools
 
 
+
 """SCHOOL CLASS AS SUBCLASS OF COUNTRY"""
 class School(Country):
 
-    def __init__(self, country_code, wd = '../../../data/school_loc/', buffer=0.01):
+    def __init__(self, country_code, wd = configs.WD + 'data/school_loc/', buffer=0.01):
         super().__init__(country_code)
         self.wd = wd ### Please edit the wd to your school data folder!
         self.country_code = country_code
