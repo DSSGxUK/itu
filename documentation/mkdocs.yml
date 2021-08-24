@@ -1,0 +1,38 @@
+site_name: ITU Project
+site_url: https://dssgxitu.com/
+
+markdown_extensions:
+- def_list
+- pymdownx.tasklist:
+    custom_checkbox: true
+    clickable_checkbox: true
+- pymdownx.superfences:
+    custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+- attr_list
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+    - Home: index.md
+    - About the Team: about.md
+    - Introduction: intro.md
+    - Exploratory Data Analysis: eda.md
+    - Meta Data Information: Meta_data.md
+    - Data Gathering: datagat.md
+    - Feature Engineering: fe.md
+    - Modeling: model.md
+    - Model Application: modapp.md
+    - Discussion: conc.md
+theme:
+    # name: readthedocs
+    name: material
+    features:
+     - toc.integrate
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - rust
