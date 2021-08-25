@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://dssgxitu.com/model/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.f7f47774.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.1118c9be.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ba0d045b.min.css">
         
       
     
@@ -516,19 +516,19 @@
 <p>As part of our winning models, we wanted to see which predictors had high feature importances within the model. Below, is the graph for both the winning Random Forest and XGBoost model feature importances. For both models, the average radiance seems to have significant predictive power, however the importances of other features differ largely between RF and XGBoost. While average download speed has a large feature importance value for XGBoost, it was one of the least important features in the RF model. Moreover, Vegetation Index and Facebook users are key features in the RF model but only played a marginal role in XGBoost.</p>
 <p><img alt="feature_importance" src="../Images/RF_ft_impt.PNG" /></p>
 <p>!! wrong variable names and potentially wrong graphicc</p>
-<p><img alt="XGBoost_Shap_impt" src="Images/Shap_ft_impt.PNG" /></p>
+<p><img alt="XGBoost_Shap_impt" src="../Images/Shap_ft_impt.PNG" /></p>
 <p>Subsequently, we further investigated the effects of features on the prediction by examining the Shapley values. The Shapely value is an indicator that originally stems from Game Theory but is commonly used in Machine Learning to determine the contribution of a feature to a prediction. The graphic below shows the scattered effects that predictors had on one specific prediction for the champion XGBoost model. In addition, it indicates how relatively high or low values of features impacted the overall prediction.</p>
-<p><img alt="XGBoost_Shap" src="Images/xgboost_shapely.PNG" /></p>
+<p><img alt="XGBoost_Shap" src="../Images/xgboost_shapely.PNG" /></p>
 <p>While low impact features like average download and upload speed look normally distributed around zero, important features like Facebook can be interpreted more reasonably. For this model, low monthly Facebook users resulted in a (much) lower prediction of online population. Similarly, low values of average radiance yielded lower predictions. </p>
 <p>In order to examine impact of the features in detail, we looked at Shapely values where the model performed particularly well and particularly poorly (i.e. very low and high errors). 
 For errors larger than 0.4 most of the shapley values are scattered around 0, however from the image below we can not make out a clear pattern around why these predictions turned out to be poorly. 
 Similarly, an inspection of Shapely values where the errors were lower than 0.05 does not yield an obvious difference to the overall Shapely values. Thus explaining the high performance of predictors for schools with error lower than 0.5. </p>
-<p><img alt="XGBoost_Shap" src="Images/xgboost_shapely_lowerror.PNG" />
-<img alt="XGBoost_Shap" src="Images/xgboost_shapely_higherror.PNG" /></p>
+<p><img alt="XGBoost_Shap" src="../Images/xgboost_shapely_lowerror.PNG" />
+<img alt="XGBoost_Shap" src="../Images/xgboost_shapely_higherror.PNG" /></p>
 <p>We evaluated how the feature importance changes across the range of feature values by creating line and scatter plots indicating the value und respective importance.  This example depicts the feature importances for the range of average radiance values. We can observe a clear pattern, that the more the radiance deviates from the mean either in a positive or negative direction, the stronger the respective effect on the prediction appears to be. Very low values have strong negative effects, whereas large values typically have a strong positive effect on the prediction. </p>
-<p><img alt="XGBoost_Shap" src="Images/xgboost_shapely_scatterline.PNG" /></p>
+<p><img alt="XGBoost_Shap" src="../Images/xgboost_shapely_scatterline.PNG" /></p>
 <p>Ultimately, we spot-checked a single school area prediction with observing how the collection of features influenced this particular prediction. This again can be done for all school areas but also subsetted for a set of observations with very high or low errors. In the example below, we are examining a school area prediction with a high error. When inspecting this particular prediction, we observe that Facebook data did not have a significant impact. This might be one reason the error is so high.</p>
-<p><img alt="XGBoost_Shap" src="Images/xgboost_shapely_indiv.PNG" /></p>
+<p><img alt="XGBoost_Shap" src="../Images/xgboost_shapely_indiv.PNG" /></p>
                 
               
               
@@ -602,7 +602,7 @@ Similarly, an inspection of Shapely values where the errors were lower than 0.05
     <script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.febc23d1.min.js"></script>
+      <script src="../assets/javascripts/bundle.2b46852b.min.js"></script>
       
     
   </body>
