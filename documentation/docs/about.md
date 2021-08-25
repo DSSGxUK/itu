@@ -12,12 +12,13 @@ Jonathan is from a small village in Leicestershire. He graduated in May 2021 wit
 Jacob recently graduated with a Master's degree in Sociology from the University of Mannheim, Germany. Starting in fall 2021 he will be a PhD candidate for the Department of Statistics at LMU Munich. He most enjoyed the collaboration of people from different academic backgrounds and getting insights to Machine Learning approaches. 
 
 
-Project Mentor:
-Daniel Townsend
+Project Mentor:<br></br>
+![Image](Images/Daniel_bio_pic.jpg){: style="height:90px;width:60px"} Daniel Townsend <br></br>
+Daniel is a Canadian living in Berlin and working as a project management consultant. His practice focuses on helping organizations to realize strategic and visionary outcomes through policy, developing data systems  and organizational change management. Daniel has over 15 years of experience in management consulting and policy development. He has a MSc from Imperial College London and is pursuing a Ph.D. at the University of Toronto. His highlight this summer was working with all the fellows. 
 
 Technical Mentor: <br></br>
 ![Image](Images/ROBERT_HAGER_smaller.jpg){: style="height:90px;width:60px"} Robert Hager <br></br>
-Robert resides in Munich, Germany and is a mathematician who took a break from his current position as a Data Scientist, working in the insurance sector, to be a technical mentor for ITU this summer. He has enjoyed contributing his experience in developing and delivering data science products.
+Robert resides in Munich, Germany and is a mathematician who took a break from his current position as a Data Scientist, working in the insurance sector, to be a technical mentor for the ITU project this summer. He has enjoyed contributing his experience in developing and delivering data science products.
 
 
 ## Who is ITU?
