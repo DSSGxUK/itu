@@ -18,7 +18,7 @@ Satellite Images on a National Level for both Brazil and Thailand:
 
 3. [Global Human Modification Map](Images/ghm_map.html)
 
-In this map, we see the level of Global Human Modification in the last few years within both Brazil and Thailand. For more information on how this dataset was compiled, please see the Data Gathering page. Click on this [Brazil Map](Images/Brazil_GHM.html) to see the country level data. <br></br>
+In this map, we see the level of Global Human Modification in the last few years within both Brazil and Thailand. For more information on how this dataset was compiled, please see the Data Gathering page. Click on this [Brazil Map](Images/ghm_map.html) to see the country level data. <br></br>
 ![GHM_Map](Images/GHM_Schools.PNG)
 
 ![Brazil](Images/GHM_Brazil_Thailand.PNG)
