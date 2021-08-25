@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://dssgxitu.com/modapp/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.1118c9be.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.f7f47774.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ba0d045b.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -437,7 +437,7 @@
 </li>
 <li>
 <p>We then load the model from the provided model folder. The following code reloads the model and utilizes it to predict the connectivity on the Thailand dataset:
-<img alt="picklefile" src="Images/thailand_pickle_model.png" /></p>
+<img alt="picklefile" src="../Images/thailand_pickle_model.PNG" /></p>
 </li>
 <li>
 <p>After that, we examine the predictions on a map: 
@@ -449,36 +449,38 @@ Here are the maps that show the schools' predictions of relative online populati
 <p><img alt="RF_Schools" src="../Images/Thailand_schols.PNG" /></p>
 <p>In order to compare our predictions to the ground truth, we aggregated the schools up to a province level as survey data was only provided on that level. This measure of evaluation proved challenging for a number of reasons as stated above. </p>
 <p>The following graphics compare predicted and survey data province level connectivity shares on a country map and in a distribution histogram:
-<img alt="Thailand_Province" src="Images/Thailand_province.png" /> 
-<img alt="Thailand_Province" src="../Images/Thailand_distributions.png" /> </p>
+<img alt="Thailand_Province" src="../Images/Thailand_province.PNG" /> 
+<img alt="Thailand_Province" src="Images/Thailand_distributions.PNG" /> </p>
 <p>By visual inspection, we can see that the model predictions on a province level diverge greatly from the existing ground truth. While the predictions are roughly normally distributed across the provinces with a small range of predictions, the range of ground truth connectivity shares appear to be much broader. Therefore, we are uncertain about the ability for our Brazil model to accurately predict school areas' internet connectivity in Thailand. Nevertheless, it seems unreasonable that more than half of Thai provinces have a 100% connectivity rate which raises the uncertainty, whether the large average error of 0.35 was caused by the model or the ground truth data. </p>
 <h2 id="philippines">Philippines</h2>
 <p>We also were able to test this out on the Philippines. The Philippines had better data as their surveys were on an enumeration area level. Here are the results from our Philippines predictions. </p>
 <h2 id="further-application">Further Application</h2>
 <h3 id="configuration-file">Configuration file</h3>
 <p>For both the school priorization and the following aggregation, a specific congfiguration file (predict_config.yaml) was used. It contains case specific information like the data paths, predictor variable set, country name, country population, and steps on implementing the champion model in mlflow. Within this file, these characteristics can easily be updated. If, for instance, one trains a new model, the configuration file is where you can point to the location of the new model as opposed to in the corresponding notebooks or scripts. This simplifies model prediction and minimizes human error. </p>
-<p>!! Pic of Configfile !! </p>
+<p><img alt="predict_conf" src="../Images/predict_conf.PNG" /> </p>
 <h3 id="school-priorization">School Priorization</h3>
 <p>Building on our school area predictions and additional information such as population or potential internet connectivity, we create a prioritization list of schools. One can change this priorization  based on various indicators like relative offline population or absolute offline population. Furthermore, if the data contains geographic information, the priorization list can be filtered by a specific federal state or to schools in rural areas.</p>
 <p>As a first step, the feature-engineered training dataset for the respective country (in the following example: Brazil) and the pickled champion model are loaded. 
-The imported model is then applied to the second country's data and predicts online population for the schools featured in the dataset. </p>
-<p>Within this dataset, where schools are the rows, we can merge in more information on absolute population data of that school and information around the school's internet and computer availability. While population data is necessary to calculate the absolute offline population around a school, additional school information such as internet availability or pupil count might not be at hand for some countries. Therefore, that type of data is optional and not required for initial priorization. </p>
+The imported model is then applied to the country's data and predicts online population for the schools featured in the dataset. </p>
+<p>Within this dataset, where schools are the rows, we can merge in more information on absolute population data of that school and information around the school's internet and computer availability. While population data is necessary to calculate the absolute offline population around a school, additional school information such as internet availability or pupil count might not be at hand for some countries. Therefore, that type of data is optional and not required for initial priorization. The following code chunks load the specific additional datasets and merge them to the initial training set. To only keep the correct absolute population variable we first drop the pixel population values featured in the model. If school location data was pulled by OSM and does not contain further information the chunk should be commented out. </p>
+<p><img alt="merge" src="../Images/load_merge_pop.PNG" /> 
+<img alt="merge" src="../Images/load_merge_school.PNG" /> </p>
 <p>Since our model was not restricted to predict only values between 0 and 1, (for example it predicted values above 1 and below 0) we first standardized predicted values to be between these boundaries. 
 Secondly, we multiply the prediction of online population share by the population count, which yields the estimated absolute online population around a school. The corresponding offline population is calculated by taking 1 - "online population share" and the multiplying this value with the population count. </p>
 <p>At this point, we've finished with the basic arithmetical steps and can create our custom priorization list. In this example, we first export the list of schools by absolute offline population, from greatest to smallest. In theory, connecting the first school in this list would potentially benefit the largest number of individuals in the school sample. We export additional information provided in the school data such as the school's name to facilitate use of the list.</p>
 <p>As our data for Brazil contains additional information (e.g. computer and internet availability), we not only add these variables to our exported file, but we also subset our schools to prioritize using these. It makes sense to exclude schools that, according to the UNICEF school data, already have internet access. Therefore, the second file lists only the offline schools ranked by the absolute offline population around it. </p>
 <p>The third subsetting step was to exclude the 10th population number decile of the sample, i.e. the outlying 10% of schools, that have the largest number of population around them. This rather exploratory step was done to investigate whether some schools are highly prioritized solely due to their high population numbers. Excluding the highest populated areas (in most cases large metropolitan areas) can lead towards the potentially less obvious hubs of offline population. </p>
 <p>For each of the priorization lists, we've create a choropleth map of schools and offline population. </p>
-<p><img alt="brazil_offlinepop" src="../Images/brazil_absolute_offpop.png" /> </p>
+<p><img alt="brazil_offlinepop" src="Images/brazil_absolute_offpop.PNG" /> </p>
 <h3 id="country-level-aggregation">Country-level Aggregation</h3>
 <p>A further step of model application was the aggregation to the country level. However, estimating the average of online population is not possible in this case, since it would weight each enumeration area (or other unit of geographic aggregation) equally. An enumeration area with 25 inhabitants would contribute as much to the national average as an enumeration area with 250 people. #are we sure this is how enumeration areas are created?!</p>
 <p>Therefore, the national average is calculated slightly different. We sum up the previously calculated absolute online population and sum up the total population in our sample. If our enumeration area sample is representative for the whole country, dividing the total online population by the total population (both in sample) would yield a representative national level connectivity share. Ultimately, this proportion can be multiplied with the national population in order to get the absolute number of people connected to the internet. As a robustness check, the same calculations are then conducted using the ground truth connectivity data. </p>
 <p>If the required data is available, the aggregation can of course also be done to a province, federal state or other geographical level. </p>
 <p>The following table contains the Brazilian relative and absolute online population according to the aggregated prediction, aggregated ground truth and a third online source. The prediction comes close to the other two values, however it slightly overestimates the Brazil online population.  </p>
-<p><img alt="Brazil_Agg" src="../Images/aggregated_table.png" /></p>
+<p><img alt="Brazil_Agg" src="Images/aggregated_table.PNG" /></p>
 <h3 id="population-data-remarks">Population data remarks</h3>
 <p>Generally, some remarks regarding the absolute population data should be considered by users. For the priorization and the country level aggregation, the absolute number has to be treated cautiously due to school area overlap. In this example priorization list, we see that the first 6 schools have the same ground truth connectivity level ("offline_g"). </p>
-<p><img alt="Brazil_Prio" src="../Images/brazil_prio_list.png" /></p>
+<p><img alt="Brazil_Prio" src="Images/brazil_prio_list.PNG" /></p>
 <p>The list indicates that these schools are all located in the same enumeration area (you can also tell from the geographic coordinates of the school location). The point from this list is that the radius around each school is most likely going to overlap with another school in an urban area and therefore individuals within this overlap will be counted more than once in the population numbers. While the number of roughly 50,000 people potentially reached with connecting the one specific school is accurate, we must bear in mind, that connecting 5 schools each with an absolute population of 50,000 people will not result in connecting 250,000 people to the internet because of the population overlap issue.</p>
 <p>Additionally, once the first school is connected to the internet, the priorization list will be altered since some individuals will already obtain internet through the first school leaving other schools on the list as a lower priority for connection (since prioritization is based exclusively on absolute population assisted). </p>
 <p>Due to the overlap of school areas, adding up the population numbers of the enumeration areas will always overestimate the total number of indiviudals featured in our analysis, as many will be counted more than once. It therefore prevents understanding an exact amount of individuals that can be connected to the internet on any geographic level. </p>
@@ -556,7 +558,7 @@ Secondly, we multiply the prediction of online population share by the populatio
     <script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.2b46852b.min.js"></script>
+      <script src="../assets/javascripts/bundle.febc23d1.min.js"></script>
       
     
   </body>
