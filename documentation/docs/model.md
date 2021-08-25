@@ -16,15 +16,15 @@ In order to track our models, we set up autologging in mlflow. [Mlflow](https://
         mlflow.set_tracking_uri("file:///files/mlruns")
         mlflow.tracking.get_tracking_uri()
 
-        #Naming the set_experiment
+        # Naming the set_experiment
         dt = date.today().strftime('%d/%m/%Y')
         experiment_name = dt + model_config['meta']['experiment_name']
         mlflow.set_experiment(experiment_name)
         mlflow_client = mlflow.tracking.MlflowClient()
         experiment_id = mlflow_client.get_experiment_by_name(experiment_name).experiment_id ```
-
+        
 Here you can see the simplicity of reloading the model artifact later on and applying it to new data:
-    ![mlflow_pred](Images/thailand_pickle_model.png)
+    ![mlflow_setup](Images/thailand_pickle_model.PNG)
 
 
 ## Model Configuration
@@ -124,29 +124,29 @@ As part of our winning models, we wanted to see which predictors had high featur
 
 !! wrong variable names and potentially wrong graphicc
 
-![XGBoost_Shap_impt](Images/Shap_ft_impt.png)
+![XGBoost_Shap_impt](Images/Shap_ft_impt.PNG)
 
-Subsequently, we further investigated the effects of features on the prediction by examining the shapley values. The graphic below shows the scattered effects that predictors had on one specific prediction for the champion XGBoost model. In addition, it indicates how relatively high or low values of features impacted the overall prediction.
+Subsequently, we further investigated the effects of features on the prediction by examining the Shapley values. The Shapely value is an indicator that originally stems from Game Theory but is commonly used in Machine Learning to determine the contribution of a feature to a prediction. The graphic below shows the scattered effects that predictors had on one specific prediction for the champion XGBoost model. In addition, it indicates how relatively high or low values of features impacted the overall prediction.
 
-![XGBoost_Shap](Images/xgboost_shapely.png)
+![XGBoost_Shap](Images/xgboost_shapely.PNG)
 
 
 While low impact features like average download and upload speed look normally distributed around zero, important features like Facebook can be interpreted more reasonably. For this model, low monthly Facebook users resulted in a (much) lower prediction of online population. Similarly, low values of average radiance yielded lower predictions. 
 
-In order to examine impact of the features in detail, we looked at shapely values where the model performed particularly well and particularly poorly (i.e. very low and high errors). 
+In order to examine impact of the features in detail, we looked at Shapely values where the model performed particularly well and particularly poorly (i.e. very low and high errors). 
 For errors larger than 0.4 most of the shapley values are scattered around 0, however from the image below we can not make out a clear pattern around why these predictions turned out to be poorly. 
-Similarly, an inspection of shapely values where the errors were lower than 0.05 does not yield an obvious difference to the overall shapely values. Thus explaining the high performance of predictors for schools with error lower than 0.5. 
+Similarly, an inspection of Shapely values where the errors were lower than 0.05 does not yield an obvious difference to the overall Shapely values. Thus explaining the high performance of predictors for schools with error lower than 0.5. 
 
-![XGBoost_Shap](Images/xgboost_shapely_lowerror.png)
-![XGBoost_Shap](Images/xgboost_shapely_higherror.png)
+![XGBoost_Shap](Images/xgboost_shapely_lowerror.PNG)
+![XGBoost_Shap](Images/xgboost_shapely_higherror.PNG)
 
 
 We evaluated how the feature importance changes across the range of feature values by creating line and scatter plots indicating the value und respective importance.  This example depicts the feature importances for the range of average radiance values. We can observe a clear pattern, that the more the radiance deviates from the mean either in a positive or negative direction, the stronger the respective effect on the prediction appears to be. Very low values have strong negative effects, whereas large values typically have a strong positive effect on the prediction. 
 
-![XGBoost_Shap](Images/xgboost_shapely_scatterline.png)
+![XGBoost_Shap](Images/xgboost_shapely_scatterline.PNG)
 
 
 Ultimately, we spot-checked a single school area prediction with observing how the collection of features influenced this particular prediction. This again can be done for all school areas but also subsetted for a set of observations with very high or low errors. In the example below, we are examining a school area prediction with a high error. When inspecting this particular prediction, we observe that Facebook data did not have a significant impact. This might be one reason the error is so high.
 
-![XGBoost_Shap](Images/xgboost_shapely_indiv.png)
+![XGBoost_Shap](Images/xgboost_shapely_indiv.PNG)
 

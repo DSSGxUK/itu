@@ -57,6 +57,7 @@ Brief note on licensing: Most of the data sources we used are open source and fo
 
 [OpenStreetMap®](https://www.openstreetmap.org/copyright) is open data, licensed under the Open Data Commons Open Database License (ODbL) by the OpenStreetMap Foundation (OSMF).
 
+[Google Earth Engine Terms of Service](https://earthengine.google.com/terms/)
 
 ### Dataset Descriptions
 
