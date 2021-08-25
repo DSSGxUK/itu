@@ -6,7 +6,11 @@ Who are we?
 Tova hails from Philadelphia, PA. She graduated in May 2021 with a degree in Urban Spatial Analytics from the University of Pennsylvania and is looking forward to pursuing a career in geospatial data science. The highlight of her summer was meeting new colleagues located internationally and learning how to use geemap API for python. 
 
 - Utku Can Ozturk
+
 - Jonathan Cook
+![Image](Images/DSSG_image.jpeg){: style='height:60px;width:60px"}
+Jonathan is from a small village in Leicestershire. He graduated in May 2021 with First Class Honours in BSc Theoretical Physics from University College London (UCL). Starting from October 2021, he will be a DeepMind Scholar studying MSc Computational Statistics and Machine Learning, also at UCL. Jonathan has learned so much from the incredibly talented DSSGx UK cohort of fellows and mentors. He is also grateful for the opportunity to work on such a globally critical social issue.
+
 - Jacob Beck
 ![Image](Images/image0.jpeg){: style="height:60px;width:60px"}
 
