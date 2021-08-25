@@ -73,7 +73,7 @@ For each of the priorization lists, we've create a choropleth map of schools and
 
 
 ### Country-level Aggregation 
-A further step of model application was the aggregation to the country level. However, estimating the average of online population is not possible in this case, since it would weight each enumeration area (or other unit of geographic aggregation) equally. An enumeration area with 25 inhabitants would contribute as much to the national average as an enumeration area with 250 people. #are we sure this is how enumeration areas are created?!
+A further step of model application was the aggregation to the country level. However, estimating the average of online population is not possible in this case, since it would weight each school area equally. A school area with 250 inhabitants would contribute as much to the national average a school area with 2500 people. 
 
 Therefore, the national average is calculated slightly different. We sum up the previously calculated absolute online population and sum up the total population in our sample. If our enumeration area sample is representative for the whole country, dividing the total online population by the total population (both in sample) would yield a representative national level connectivity share. Ultimately, this proportion can be multiplied with the national population in order to get the absolute number of people connected to the internet. As a robustness check, the same calculations are then conducted using the ground truth connectivity data. 
 
