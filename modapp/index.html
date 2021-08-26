@@ -475,8 +475,8 @@ Here are the maps that show the schools' predictions of relative online populati
 <p>Subsequently, we modify the map to only display schools predicted to be below 50% internet connectivity, by the best Random Forest model and XGBoost model. Both models predicted 97 schools where less than half of the individuals around it are connected, but the patterns of schools differ slightly. From a first visual inspection we could draw the conclusion, that high offline school areas are mostly predicted in more northern areas and areas close to the Thailand national borders.</p>
 <p><img alt="RF_Schools" src="../Images/Thailand_schols.PNG" /></p>
 <p>In order to compare our predictions to the ground truth, we aggregated the schools up to a province level as survey data was only provided on that level. This measure of evaluation proved challenging for a number of reasons as stated above. </p>
-<p>The following graphics compare predicted and survey data province level connectivity shares on a country map and in a distribution histogram:
-<img alt="Thailand_Province" src="../Images/Thailand_province.PNG" /> 
+<p>The following graphics compare predicted and survey data province level connectivity shares on a country map and in a distribution histogram:</p>
+<p><img alt="Thailand_Province" src="../Images/Thailand_province.PNG" /> 
 <img alt="Thailand_Province" src="../Images/Thailand_distributions.PNG" /> </p>
 <p>By visual inspection, we can see that the model predictions on a province level diverge greatly from the existing ground truth. While the predictions are roughly normally distributed across the provinces with a small range of predictions, the range of ground truth connectivity shares appear to be much broader. Therefore, we are uncertain about the ability for our Brazil model to accurately predict school areas' internet connectivity in Thailand. Nevertheless, it seems unreasonable that more than half of Thai provinces have a 100% connectivity rate which raises the uncertainty, whether the large average error of 0.35 was caused by the model or the ground truth data. </p>
 <h2 id="philippines">Philippines</h2>

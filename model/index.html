@@ -473,7 +473,7 @@
 </li>
 <li>XGBoost <ul>
 <li><a href="../scripts/training_XGBoost.html">HTML File</a></li>
-<li><a href="../scripts/training_XGBoost.ipynb">Jupyter Notebook</a> #this is not correct</li>
+<li><a href="../scripts/training_XGBoost.ipynb">Jupyter Notebook</a></li>
 <li><a href="../scripts/train_XGBoost_no_mlflow.py">Python Script with Mlflow</a> </li>
 <li><a href="../scripts/train_XGBoost_Exp1.py">Python script without Mlflow</a></li>
 </ul>
@@ -516,7 +516,6 @@
 <h2 id="model-interpretation">Model Interpretation</h2>
 <p>As part of our winning models, we wanted to see which predictors had high feature importances within the model. Below, is the graph for both the winning Random Forest and XGBoost model feature importances. For both models, the average radiance seems to have significant predictive power, however the importances of other features differ largely between RF and XGBoost. While average download speed has a large feature importance value for XGBoost, it was one of the least important features in the RF model. Moreover, Vegetation Index and Facebook users are key features in the RF model but only played a marginal role in XGBoost.</p>
 <p><img alt="feature_importance" src="../Images/RF_ft_impt.PNG" /></p>
-<p>!! wrong variable names and potentially wrong graphicc</p>
 <p><img alt="XGBoost_Shap_impt" src="../Images/Shap_ft_impt.PNG" /></p>
 <p>Subsequently, we further investigated the effects of features on the prediction by examining the Shapley values. The Shapely value is an indicator that originally stems from Game Theory but is commonly used in Machine Learning to determine the contribution of a feature to a prediction. The graphic below shows the scattered effects that predictors had on one specific prediction for the champion XGBoost model. In addition, it indicates how relatively high or low values of features impacted the overall prediction.</p>
 <p><img alt="XGBoost_Shap" src="../Images/xgboost_shapely.PNG" /></p>
