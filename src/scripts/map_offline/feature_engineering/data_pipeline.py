@@ -21,7 +21,6 @@ class FeatureEngineering():
     Feature engineering
     """
     def __init__(self):
-        #self.use_survey = configs.SURVEY_EXISTS
         self.data_dir = configs.WD + 'data/'
         self.country_code = configs.COUNTRY_CODE.lower()
         self.country = configs.COUNTRY.title()
@@ -30,17 +29,17 @@ class FeatureEngineering():
 
         """SET SURVEY SCHOOL DATA"""
         if os.path.exists(self.data_dir + 'school_loc/school_data_' + self.country_code + '.csv'):
-            print('Reading survey joined school data...')
+            print('Reading school data...')
             self.school_data = pd.read_csv(self.data_dir + 'school_loc/school_data_' + self.country_code + '.csv')
             self.school_data = df_to_gdf(self.school_data)
         else:
             self.school_data = School(self.country_code).data
             self.survey = Survey(self.country_code).data
-            #if self.survey:
+
             if configs.SURVEY_AREAS == 'enumeration':
                 self.school_data = self.join_survey_schools()
             elif configs.SURVEY_AREAS == 'tiles':
-                self.school_data = self.join_by_kdtree()
+                self.school_data = self.join_by_kdtree(self.survey, ['target'])
             
             self.school_data.to_csv(self.data_dir + 'school_loc/school_data_' + self.country_code + '.csv', index= False)
         
@@ -282,9 +281,8 @@ class FeatureEngineering():
 
         centroids = self.get_centroids(self.school_data)
         tree = self.build_tree(centroids)
+
         
-
-
     def save_training_set(self):
         """
         Save complete dataset

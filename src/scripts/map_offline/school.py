@@ -16,9 +16,9 @@ from data_gathering.opendata_scrap import osm_to_json, get_osm_schools
 """SCHOOL CLASS AS SUBCLASS OF COUNTRY"""
 class School(Country):
 
-    def __init__(self, country_code, wd = configs.WD + 'data/school_loc/', buffer=0.01):
+    def __init__(self, country_code, wd = configs.WD + 'data/school_loc/', buffer=configs.SCHOOL_BUFFER):
         super().__init__(country_code)
-        self.wd = wd ### Please edit the wd to your school data folder!
+        self.wd = wd
         self.country_code = country_code
         self.buffer = buffer
         self.set_school_data()
@@ -49,7 +49,7 @@ class School(Country):
 
         if self.buffer != 0:
             print('Creating buffer zones for schools...')
-            self.data['geometry'] = [Point(i, j).buffer(self.buffer) for i, j in zip(self.data.longitude, self.data.latitude)]
+            self.data['geometry'] = [Point(i, j).buffer(self.buffer/100) for i, j in zip(self.data.longitude, self.data.latitude)]
 
             # if you want more precise approximation for radians to km uncomment following line of code
             #self.data['geometry'] = [Point(i, j).buffer(self.buffer/(110*cos(radians(j)))) for i, j in zip(self.data.longitude, self.data.latitude)]

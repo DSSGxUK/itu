@@ -1,7 +1,6 @@
 
 
 from osgeo import gdal
-#from pyproj import Transformer
 import geopandas as gp
 import os
 
@@ -139,7 +138,7 @@ class FacebookData(OpenData):
         file_name = 'facebook_' + self.country_code.lower() + '_' + str(configs.FACEBOOK_SCHOOL_DATA_LEN[self.country_code.lower()]) + '.csv'
 
         if os.path.exists(self.wd + file_name):
-            print('Reading FB data...')
+            print('Reading facebook data...')
             try:
                 self.data = pd.read_csv(self.wd + file_name)
             except:
@@ -156,7 +155,7 @@ class FacebookData(OpenData):
                 print('Writing facebook data to directory...')
                 self.data.to_csv(self.wd + 'facebook_' + self.country_code.lower() + '_' + str(len(self.locations)) + '.csv', index=False)
             except:
-                raise RuntimeError('Unable to call the FB API!')
+                raise RuntimeError('Unable to call the Facebook Marketing API!')
 
 
 """OPENCELL DATA CLASS"""
@@ -214,13 +213,14 @@ class OpencellData(OpenData):
 """SATELLITE IMAGERY CLASS"""
 class SatelliteData(OpenData):
 
-    def __init__(self, country_code, wd = 'satellite/', locations = None, start_year = configs.SATELITTE_START_YEAR, end_year = configs.SATELITTE_END_YEAR, buffer = configs.SATELITTE_BUFFER, max_call_size = configs.SATELITTE_MAX_CALL_SIZE, json_key_path = configs.GOOGLE_EARTH_ENGINE_API_JSON_KEY, ee_service_account = configs.GOOGLE_SERVICES_ACCOUNT):
+    def __init__(self, country_code, wd = 'satellite/', locations = None, start_year = configs.SATELITTE_START_YEAR, end_year = configs.SATELITTE_END_YEAR, buffer = configs.SATELITTE_BUFFER, max_call_size = configs.SATELITTE_MAX_CALL_SIZE, json_key_path = configs.GOOGLE_EARTH_ENGINE_API_JSON_KEY, ee_service_account = configs.GOOGLE_SERVICES_ACCOUNT, scale = configs.SATELITTE_IMAGE_SCALE):
         super().__init__(country_code)
         self.wd = self.base_wd + wd
         self.collection_band = configs.SATELITTE_COLLECTIONS
         self.locations = locations
         self.buffer = buffer * 1000
         self.max_call_size = max_call_size
+        self.scale = scale
 
         if json_key_path is not None:
             self.json_key_path = self.wd + json_key_path
@@ -248,7 +248,7 @@ class SatelliteData(OpenData):
                 raise ValueError('Locations data frame should include source_school_id, latitude, longitude and school_location columns!')
             
             print('Calling Google Earth Engine API for satellite imagery..')
-            self.data = get_satellite_data(self.collection_band, self.locations, self.json_key_path, self.ee_service_account, self.buffer, self.max_call_size, self.start_year, self.end_year)
+            self.data = get_satellite_data(self.collection_band, self.locations, self.json_key_path, self.ee_service_account, self.buffer, self.max_call_size, self.start_year, self.end_year, self.scale)
             
             print('Writing satellite data to directory...')
             self.data.to_csv(self.wd + 'satellite_' + self.country_code.lower() + '.csv', index=False)

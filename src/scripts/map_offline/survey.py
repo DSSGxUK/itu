@@ -20,8 +20,8 @@ class Survey(Country):
 
     def __init__(self, country_code):
         super().__init__(country_code)
-        self.available_countries = configs.AVAILABLE_COUNTRIES # manually controlled attribute keeps available country codes
-        self.func_map = {i: i.upper() + '_Survey' for i in self.available_countries} # attribute to map country code to functions
+        self.available_countries = configs.AVAILABLE_COUNTRIES
+        self.func_map = {i: i.upper() + '_Survey' for i in self.available_countries}
         
         if (self.country_code.upper() + '_Survey') in self.func_map.values():
             self.data = eval(self.func_map[self.country_code] + '()').data
@@ -152,17 +152,18 @@ class THA_Survey(Survey):
             try:
                 survey =pd.read_csv(self.wd + 'Microdata ICTHTV 2562 REC01.csv')
                 survey = survey[['CWT', 'H107']]
-                survey['H107'].replace(' ', np.nan, inplace = True)
-                survey.dropna(subset = ['H107'], inplace = True)
+                survey.rename(columns={'H107': 'target'}, inplace=True)
+                survey['target'].replace(' ', np.nan, inplace = True)
                 target_dict = {'1': 1, '2': 0, '3': 0}
-                survey['H107'] = survey['H107'].map(target_dict)
+                survey['target'] = survey['target'].map(target_dict)
             except:
                 raise RuntimeError('Unable to read raw survey data!')
 
             print('Joining province geometries with survey data...')
             survey_pro = survey.merge(provinces, how = 'inner')
-            survey_pro = survey_pro[['H107', 'geometry']]
-            survey_pro.rename(columns = {'H107': 'target'}, inplace = True)
+            survey_pro.dropna(subset = ['target', 'geometry'], inplace = True)
+            survey_pro_mean = survey_pro.groupby('CWT').mean().reset_index()
+            survey_pro = survey_pro_mean.merge(provinces)[['target', 'geometry']]
             survey_pro.to_csv(self.wd + 'survey_tha.csv', index = False)
 
         return gp.GeoDataFrame(survey_pro, crs='epsg:4326')
@@ -211,7 +212,7 @@ class PHL_Survey(Survey):
             target_dict = {'YES': 1, 'NO': 0}
             survey_brgy.target = survey_brgy['target'].map(target_dict)
             survey_brgy_mean = survey_brgy.groupby(['prov', 'cit_mun', 'brgy']).mean()['target'].reset_index()
-            survey_brgy = survey_brgy_mean.merge(brgys, on=['prov', 'cit_mun', 'brgy'])
+            survey_brgy = survey_brgy_mean.merge(brgys, on=['prov', 'cit_mun', 'brgy'])[['target','geometry']]
             survey_brgy.to_csv(self.wd + 'survey_phl.csv', index = False)
         
         return gp.GeoDataFrame(survey_brgy, crs='epsg:4326')
