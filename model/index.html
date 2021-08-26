@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://dssgxitu.com/model/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.f7f47774.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.1118c9be.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ba0d045b.min.css">
         
       
     
@@ -416,9 +416,10 @@
 <h2 id="training-set-eda">Training Set EDA</h2>
 <p>Once we created the training dataset was (for more information, see data gathering), we performed some Exploratory Data Analysis on it. <a href="../scripts/testing.html">Click Here</a> for the full notebook of explanatory visualizations. <a href="scripts/testing.ipynb">Click here</a> for the Jupyter Notebook .ipynb file. </p>
 <h2 id="mlflow-set-up-optional">Mlflow Set-up (Optional)</h2>
-<p>In order to track our models, we set up autologging in mlflow. <a href="https://www.mlflow.org/docs/latest/index.html">Mlflow</a> is an exciting tool for logging machine learning models, their respective KPIs and additional information. We set up our model training so that the python scripts create a new experiment for each run that logs each of the model parameters when we did hyperparameter tuning and then logs the best parameter at the top. In this way, we were able to compare the various parameters logged in each run to determine how to change the grid space of the hyperparameters. We also were then able to compare the different models to each other. Additionaly, we logged the predictors, requirements for packages and dependencies for each run. Every run's winning model was logged as an artifact, so one can easily reload the model and apply it to other data. In order to make our following analyses as reproducible as possible, we are providing a few of our winning models from different model classes. Below you can see a screenshot of mlflow which logs the best runs, with the best hyperparameters and a custom metric for evaluation.  On the side, you can also see the list of other experiments we ran with different model classes. 
-    <img alt="mlflow_setup" src="../Images/mlflow_setup.PNG" /></p>
-<pre><code>    ``` #### mlflow setup ####
+<p>In order to track our models, we set up autologging in mlflow. <a href="https://www.mlflow.org/docs/latest/index.html">Mlflow</a> is an exciting tool for logging machine learning models, their respective KPIs and additional information. We set up our model training so that the python scripts create a new experiment for each run that logs each of the model parameters when we did hyperparameter tuning and then logs the best parameter at the top. In this way, we were able to compare the various parameters logged in each run to determine how to change the grid space of the hyperparameters. We also were then able to compare the different models to each other. Additionaly, we logged the predictors, requirements for packages and dependencies for each run. Every run's winning model was logged as an artifact, so one can easily reload the model and apply it to other data. In order to make our following analyses as reproducible as possible, we are providing a few of our winning models from different model classes. Below you can see a screenshot of mlflow which logs the best runs, with the best hyperparameters and a custom metric for evaluation.  On the side, you can also see the list of other experiments we ran with different model classes. </p>
+<pre><code>![mlflow_setup](Images/mlflow_setup.PNG)
+
+    ``` #### mlflow setup ####
 
     # save runs
     mlflow.set_tracking_uri("file:///files/mlruns")
@@ -499,15 +500,15 @@
 </ol>
 <h2 id="model-evaluation-and-results">Model Evaluation and Results</h2>
 <p>Below we see a comparison of the average low connectivity errors of all models. Clearly the Random Forest and XG Boost model were most accurate in predicting the low connectivity school areas.
-<a href="../scripts/Model_Comparisons_keep.ipynb">Click on this link</a> to see a notebook with the model comparisons. <a href="../scripts/Model_Comparisons_keep.html">Click here</a> for the HTML version. 
-<img alt="model_graph" src="../Images/model_graph.PNG" /></p>
+<a href="../scripts/Model_Comparisons_keep.ipynb">Click on this link</a> to see a notebook with the model comparisons. <a href="../scripts/Model_Comparisons_keep.html">Click here</a> for the HTML version. </p>
+<p><img alt="model_graph" src="../Images/model_graph.PNG" /></p>
 <p>The winning XGboost model produced an error of .06 and a low average error of .05 with the hyper parameters of: eta: .2, max_depth: 9 and n_estimators: 550. </p>
 <p>Click on this link for the notebook with the <a href="../scripts/Thailand%20Predictions_%20XGBoost_Model.html">Random Forest Predictions</a> and click on this link for the notebook with the <a href="../scripts/Thailand%20Predictions_%20XGBoost_Model.html">XGBoost Predictions</a>.</p>
 <p>Here is a map of our predictions for schools within Brazil. Figure 1 displays the location for all the schools where the ground truth is less than 30% connected to the internet. There are 69 schools in Brazil survey data that have less than 30% internet connectivity. Figure 2 shows schools where our Random Forest model prediction was actually less than 30% connected to the internet. While we can see that not all schools below 30% were predicted correctly below the threshold, the low error score indicates that if the model succeeds below-threshold prediction, it performs well. While the Random Forest model predicted 14 schools under 30%, the XGBoost predicted 29. </p>
 <p>Figure 3 shows the predictions for all schools in the test set mapped out. This gives us an understanding of where the higher and lower connected school areas are located regionally. It appears that the higher connected schools areas are on the coast (the yellows and light greens) while the lower connected schools are located more inland. In Figure 4, we see the errors mapped out for the schools in the test set. For most schools the error scores appear to be on a low level, however large error predictions should be further examined, especially if they occur systematically at schools with low average connectivity.
 <img alt="Brazil_Map_predictions" src="../Images/Brazil_map_pred.PNG" /></p>
-<p>This graph compares predictions to reality in a scatter plot. We can see that the points are mostly close to the line except within the lower range of connectivity. 
-<img alt="Comp_pred_real" src="../Images/RF_Comparisons.PNG" /></p>
+<p>This graph compares predictions to reality in a scatter plot. We can see that the points are mostly close to the line except within the lower range of connectivity. </p>
+<p><img alt="Comp_pred_real" src="../Images/RF_Comparisons.PNG" /></p>
 <p>Then we examine the residuals compared to reality. Most residuals hug tightly to the line except for some observations at the very low and high end.</p>
 <p><img alt="Residuals_reality" src="../Images/RF_Comp_Residuals.PNG" /></p>
 <p>Lastly, we also see the comparison of distributions between reality and predictions. While the predictions curve is significantly steeper, the overall curves generally follow each other and have a similar center.</p>
@@ -602,7 +603,7 @@ Similarly, an inspection of Shapely values where the errors were lower than 0.05
     <script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.febc23d1.min.js"></script>
+      <script src="../assets/javascripts/bundle.2b46852b.min.js"></script>
       
     
   </body>
