@@ -8,6 +8,7 @@ Once we created the training dataset was (for more information, see data gatheri
 ## Mlflow Set-up (Optional)
 
 In order to track our models, we set up autologging in mlflow. [Mlflow](https://www.mlflow.org/docs/latest/index.html) is an exciting tool for logging machine learning models, their respective KPIs and additional information. We set up our model training so that the python scripts create a new experiment for each run that logs each of the model parameters when we did hyperparameter tuning and then logs the best parameter at the top. In this way, we were able to compare the various parameters logged in each run to determine how to change the grid space of the hyperparameters. We also were then able to compare the different models to each other. Additionaly, we logged the predictors, requirements for packages and dependencies for each run. Every run's winning model was logged as an artifact, so one can easily reload the model and apply it to other data. In order to make our following analyses as reproducible as possible, we are providing a few of our winning models from different model classes. Below you can see a screenshot of mlflow which logs the best runs, with the best hyperparameters and a custom metric for evaluation.  On the side, you can also see the list of other experiments we ran with different model classes. 
+
     ![mlflow_setup](Images/mlflow_setup.PNG)
 
         ``` #### mlflow setup ####
@@ -73,7 +74,7 @@ Another way to improve accuracy was by building a custom metric in order to scor
     - [Python script without Mlflow](scripts/train_Random_Forest_clean.py)
 2. XGBoost 
     - [HTML File](scripts/training_XGBoost.html)
-    - [Jupyter Notebook](scripts/training_XGBoost.ipynb) #this is not correct
+    - [Jupyter Notebook](scripts/training_XGBoost.ipynb)
     - [Python Script with Mlflow](scripts/train_XGBoost_no_mlflow.py) 
     - [Python script without Mlflow](scripts/train_XGBoost_Exp1.py)
 3. LightGBM 
@@ -93,6 +94,7 @@ Another way to improve accuracy was by building a custom metric in order to scor
 
 Below we see a comparison of the average low connectivity errors of all models. Clearly the Random Forest and XG Boost model were most accurate in predicting the low connectivity school areas.
 [Click on this link](scripts/Model_Comparisons_keep.ipynb) to see a notebook with the model comparisons. [Click here](scripts/Model_Comparisons_keep.html) for the HTML version. 
+
 ![model_graph](Images/model_graph.PNG)
 
 The winning XGboost model produced an error of .06 and a low average error of .05 with the hyper parameters of: eta: .2, max_depth: 9 and n_estimators: 550. 
@@ -105,6 +107,7 @@ Figure 3 shows the predictions for all schools in the test set mapped out. This 
 ![Brazil_Map_predictions](Images/Brazil_map_pred.PNG)
 
 This graph compares predictions to reality in a scatter plot. We can see that the points are mostly close to the line except within the lower range of connectivity. 
+
 ![Comp_pred_real](Images/RF_Comparisons.PNG)
 
 Then we examine the residuals compared to reality. Most residuals hug tightly to the line except for some observations at the very low and high end.
