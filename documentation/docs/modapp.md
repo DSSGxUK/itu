@@ -15,7 +15,8 @@ Steps in our model application to new data. Please click here for a complete pre
 2. Using the predict_config, we load the Thailand data with the school points and the same predictors used by the original model.
 
 1. We then load the model from the provided model folder. The following code reloads the model and utilizes it to predict the connectivity on the Thailand dataset:
-![picklefile](Images/thailand_pickle_model.PNG)
+
+![picklefile](Images/thailand_pickle_model.PNG){: style="height:350x;width:600px"}
 
 3. After that, we examine the predictions on a map: 
 Here are the maps that show the schools' predictions of relative online population from 0-1 in Thailand. Schools provided by OpenStreetMaps in this case.
@@ -31,8 +32,8 @@ In order to compare our predictions to the ground truth, we aggregated the schoo
 
 The following graphics compare predicted and survey data province level connectivity shares on a country map and in a distribution histogram:
 
-![Thailand_Province](Images/Thailand_province.PNG) 
-![Thailand_Province](Images/Thailand_distributions.PNG) 
+![Thailand_Province](Images/Thailand_province.PNG){: style="height:800px;width:1200px"}
+![Thailand_Province](Images/Thailand_distributions.PNG){: style="height:300px;width:600px"}
 
 By visual inspection, we can see that the model predictions on a province level diverge greatly from the existing ground truth. While the predictions are roughly normally distributed across the provinces with a small range of predictions, the range of ground truth connectivity shares appear to be much broader. Therefore, we are uncertain about the ability for our Brazil model to accurately predict school areas' internet connectivity in Thailand. Nevertheless, it seems unreasonable that more than half of Thai provinces have a 100% connectivity rate which raises the uncertainty, whether the large average error of 0.35 was caused by the model or the ground truth data. 
 
@@ -44,9 +45,13 @@ In a next step we applied the model trained on Brazilian data to the Philippines
 
 The following graphic shows the predictions for connectivity around schools in the Philippines when applying the model trained on Brazil. When evaluating the prediction we can clearly see, that they largely diverge from the ground truth microdata. Nevertheless, at this point it is not clear whether the significant discrepancy stems from the model's inaccuracy or from limitations within the survey data. On the one hand,  online sources like the "Digital 2021: The Philippines Report" (https://datareportal.com/reports/digital-2021-philippines) state that the average connection rate in the Philippines is around 67% and much closer to our prediction (average connectivity of around 60%), than to the survey data (average connectivity around 30%). On the other hand, it may well be, that the two countries are simply too different from each other to be able to apply the Brazil model to the Philippines. 
 
+![Thailand_Province](Images/phl_gt_bramodel.PNG){: style="height:750px;width:900px"}
+
 ### Model Training 
 
-The fine-grained microdata and availability of barangay shapefiles made it possible to train a new model for the Philippines on the same dataset, that we applied the Brazil model to. Using the same hyperparameters as for the champion Brazil model we train an XGBoost model on the Philippines data. As depicted in the graphic below, the new model performs accurately in predicting online population around the featured schools, as the average error is decreased to only XY. Graphic XYZ shows XYZ (need graphics from utku)
+The fine-grained microdata and availability of barangay shapefiles made it possible to train a new model for the Philippines on the same dataset, that we applied the Brazil model to. Using the same hyperparameters as for the champion Brazil model we train an XGBoost model on the Philippines data. As depicted in the graphic below, the new model performs accurately in predicting online population around the featured schools, as the average error is decreased to below 0.01. The graphic below maps predicted and ground truth connectivity levels around schools. 
+
+![Thailand_Province](Images/phl_gt_phlmodel.PNG){: style="height:750px;width:900px"}
 
 ### Conclusion: Extension to other countries
 
@@ -62,7 +67,7 @@ Nevertheless, it might still be possible that a model is created that can be app
 
 For both the school priorization and the following aggregation, a specific congfiguration file (predict_config.yaml) was used. It contains case specific information like the data paths, predictor variable set, country name, country population, and steps on implementing the champion model in mlflow. Within this file, these characteristics can easily be updated. If, for instance, one trains a new model, the configuration file is where you can point to the location of the new model as opposed to in the corresponding notebooks or scripts. This simplifies model prediction and minimizes human error. 
 
-![predict_conf](Images/predict_conf.PNG) 
+![predict_conf](Images/predict_conf.PNG){: style="height:300px;width:600px"} 
 
 
 ### School Priorization
@@ -87,7 +92,7 @@ The third subsetting step was to exclude the 10th population number decile of th
 
 For each of the priorization lists, we've create a choropleth map of schools and offline population. 
 
-![brazil_offlinepop](Images/brazil_absolute_offpop.PNG) 
+![brazil_offlinepop](Images/brazil_absolute_offpop.PNG){: style="height:800px;width:800px"}
 
 
 ### Country-level Aggregation 
@@ -99,7 +104,7 @@ If the required data is available, the aggregation can of course also be done to
 
 The following table contains the Brazilian relative and absolute online population according to the aggregated prediction, aggregated ground truth and a third online source. The prediction comes close to the other two values, however it slightly overestimates the Brazil online population.  
 
-![Brazil_Agg](Images/aggregated_table.PNG)
+![Brazil_Agg](Images/aggregated_table.PNG){: style="height:250px;width:800px"}
 
 ### Population data remarks
 Generally, some remarks regarding the absolute population data should be considered by users. For the priorization and the country level aggregation, the absolute number has to be treated cautiously due to school area overlap. In this example priorization list, we see that the first 6 schools have the same ground truth connectivity level ("offline_g"). 
