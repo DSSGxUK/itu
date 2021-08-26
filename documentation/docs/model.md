@@ -74,7 +74,7 @@ Another way to improve accuracy was by building a custom metric in order to scor
     - [Python script without Mlflow](scripts/train_Random_Forest_clean.py)
 2. XGBoost 
     - [HTML File](scripts/training_XGBoost.html)
-    - [Jupyter Notebook](scripts/training_XGBoost.ipynb) #this is not correct
+    - [Jupyter Notebook](scripts/training_XGBoost.ipynb)
     - [Python Script with Mlflow](scripts/train_XGBoost_no_mlflow.py) 
     - [Python script without Mlflow](scripts/train_XGBoost_Exp1.py)
 3. LightGBM 
@@ -125,7 +125,6 @@ As part of our winning models, we wanted to see which predictors had high featur
 
 ![feature_importance](Images/RF_ft_impt.PNG)
 
-!! wrong variable names and potentially wrong graphicc
 
 ![XGBoost_Shap_impt](Images/Shap_ft_impt.PNG)
 
