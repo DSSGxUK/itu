@@ -11,7 +11,7 @@
       
         <link rel="canonical" href="https://dssgxitu.com/model/">
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../Images/dssgx_logo.PNG">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
     
     
@@ -78,8 +78,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="ITU Project" class="md-header__button md-logo" aria-label="ITU Project" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="../Images/dssgx_logo_white_wifi.PNG" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -164,8 +163,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="ITU Project" class="md-nav__button md-logo" aria-label="ITU Project" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="../Images/dssgx_logo_white_wifi.PNG" alt="logo">
 
     </a>
     ITU Project
@@ -515,20 +513,20 @@
 <p><img alt="distributions" src="../Images/reality_pred_comp.PNG" /></p>
 <h2 id="model-interpretation">Model Interpretation</h2>
 <p>As part of our winning models, we wanted to see which predictors had high feature importances within the model. Below, is the graph for both the winning Random Forest and XGBoost model feature importances. For both models, the average radiance seems to have significant predictive power, however the importances of other features differ largely between RF and XGBoost. While average download speed has a large feature importance value for XGBoost, it was one of the least important features in the RF model. Moreover, Vegetation Index and Facebook users are key features in the RF model but only played a marginal role in XGBoost.</p>
-<p><img alt="feature_importance" src="../Images/RF_ft_impt.PNG" /></p>
-<p><img alt="XGBoost_Shap_impt" src="../Images/Shap_ft_impt.PNG" /></p>
+<p><img alt="feature_importance" src="../Images/RF_ft_impt.PNG" style="height:400px;width:800px" /></p>
+<p><img alt="XGBoost_Shap_impt" src="../Images/xgboost_ft_impt.PNG" style="height:400px;width:800px" /></p>
 <p>Subsequently, we further investigated the effects of features on the prediction by examining the Shapley values. The Shapely value is an indicator that originally stems from Game Theory but is commonly used in Machine Learning to determine the contribution of a feature to a prediction. The graphic below shows the scattered effects that predictors had on one specific prediction for the champion XGBoost model. In addition, it indicates how relatively high or low values of features impacted the overall prediction.</p>
-<p><img alt="XGBoost_Shap" src="../Images/xgboost_shapely.PNG" /></p>
+<p><img alt="XGBoost_Shap" src="../Images/xgboost_shapely.PNG" style="height:400px;width:800px" /></p>
 <p>While low impact features like average download and upload speed look normally distributed around zero, important features like Facebook can be interpreted more reasonably. For this model, low monthly Facebook users resulted in a (much) lower prediction of online population. Similarly, low values of average radiance yielded lower predictions. </p>
 <p>In order to examine impact of the features in detail, we looked at Shapely values where the model performed particularly well and particularly poorly (i.e. very low and high errors). 
 For errors larger than 0.4 most of the shapley values are scattered around 0, however from the image below we can not make out a clear pattern around why these predictions turned out to be poorly. 
 Similarly, an inspection of Shapely values where the errors were lower than 0.05 does not yield an obvious difference to the overall Shapely values. Thus explaining the high performance of predictors for schools with error lower than 0.5. </p>
-<p><img alt="XGBoost_Shap" src="../Images/xgboost_shapely_lowerror.PNG" />
-<img alt="XGBoost_Shap" src="../Images/xgboost_shapely_higherror.PNG" /></p>
+<p><img alt="XGBoost_Shap" src="../Images/xgboost_shapely_lowerror.PNG" style="height:400px;width:800px" />
+<img alt="XGBoost_Shap" src="../Images/xgboost_shapely_higherror.PNG" style="height:400px;width:800px" /></p>
 <p>We evaluated how the feature importance changes across the range of feature values by creating line and scatter plots indicating the value und respective importance.  This example depicts the feature importances for the range of average radiance values. We can observe a clear pattern, that the more the radiance deviates from the mean either in a positive or negative direction, the stronger the respective effect on the prediction appears to be. Very low values have strong negative effects, whereas large values typically have a strong positive effect on the prediction. </p>
-<p><img alt="XGBoost_Shap" src="../Images/xgboost_shapely_scatterline.PNG" /></p>
+<p><img alt="XGBoost_Shap" src="../Images/xgboost_shapely_scatterline.PNG" style="height:400px;width:1400px" /></p>
 <p>Ultimately, we spot-checked a single school area prediction with observing how the collection of features influenced this particular prediction. This again can be done for all school areas but also subsetted for a set of observations with very high or low errors. In the example below, we are examining a school area prediction with a high error. When inspecting this particular prediction, we observe that Facebook data did not have a significant impact. This might be one reason the error is so high.</p>
-<p><img alt="XGBoost_Shap" src="../Images/xgboost_shapely_indiv.PNG" /></p>
+<p><img alt="XGBoost_Shap" src="../Images/xgboost_shapely_indiv.PNG" style="height:200px;width:1800px" /></p>
                 
               
               
