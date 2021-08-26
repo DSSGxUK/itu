@@ -123,14 +123,13 @@ Lastly, we also see the comparison of distributions between reality and predicti
 ## Model Interpretation
 As part of our winning models, we wanted to see which predictors had high feature importances within the model. Below, is the graph for both the winning Random Forest and XGBoost model feature importances. For both models, the average radiance seems to have significant predictive power, however the importances of other features differ largely between RF and XGBoost. While average download speed has a large feature importance value for XGBoost, it was one of the least important features in the RF model. Moreover, Vegetation Index and Facebook users are key features in the RF model but only played a marginal role in XGBoost.
 
-![feature_importance](Images/RF_ft_impt.PNG)
+![feature_importance](Images/RF_ft_impt.PNG){: style="height:400px;width:800px"}
 
-
-![XGBoost_Shap_impt](Images/Shap_ft_impt.PNG)
+![XGBoost_Shap_impt](Images/xgboost_ft_impt.PNG){: style="height:400px;width:800px"}
 
 Subsequently, we further investigated the effects of features on the prediction by examining the Shapley values. The Shapely value is an indicator that originally stems from Game Theory but is commonly used in Machine Learning to determine the contribution of a feature to a prediction. The graphic below shows the scattered effects that predictors had on one specific prediction for the champion XGBoost model. In addition, it indicates how relatively high or low values of features impacted the overall prediction.
 
-![XGBoost_Shap](Images/xgboost_shapely.PNG)
+![XGBoost_Shap](Images/xgboost_shapely.PNG){: style="height:400px;width:800px"}
 
 
 While low impact features like average download and upload speed look normally distributed around zero, important features like Facebook can be interpreted more reasonably. For this model, low monthly Facebook users resulted in a (much) lower prediction of online population. Similarly, low values of average radiance yielded lower predictions. 
@@ -139,16 +138,16 @@ In order to examine impact of the features in detail, we looked at Shapely value
 For errors larger than 0.4 most of the shapley values are scattered around 0, however from the image below we can not make out a clear pattern around why these predictions turned out to be poorly. 
 Similarly, an inspection of Shapely values where the errors were lower than 0.05 does not yield an obvious difference to the overall Shapely values. Thus explaining the high performance of predictors for schools with error lower than 0.5. 
 
-![XGBoost_Shap](Images/xgboost_shapely_lowerror.PNG)
-![XGBoost_Shap](Images/xgboost_shapely_higherror.PNG)
+![XGBoost_Shap](Images/xgboost_shapely_lowerror.PNG){: style="height:400px;width:800px"}
+![XGBoost_Shap](Images/xgboost_shapely_higherror.PNG){: style="height:400px;width:800px"}
 
 
 We evaluated how the feature importance changes across the range of feature values by creating line and scatter plots indicating the value und respective importance.  This example depicts the feature importances for the range of average radiance values. We can observe a clear pattern, that the more the radiance deviates from the mean either in a positive or negative direction, the stronger the respective effect on the prediction appears to be. Very low values have strong negative effects, whereas large values typically have a strong positive effect on the prediction. 
 
-![XGBoost_Shap](Images/xgboost_shapely_scatterline.PNG)
+![XGBoost_Shap](Images/xgboost_shapely_scatterline.PNG){: style="height:400px;width:1400px"}
 
 
 Ultimately, we spot-checked a single school area prediction with observing how the collection of features influenced this particular prediction. This again can be done for all school areas but also subsetted for a set of observations with very high or low errors. In the example below, we are examining a school area prediction with a high error. When inspecting this particular prediction, we observe that Facebook data did not have a significant impact. This might be one reason the error is so high.
 
-![XGBoost_Shap](Images/xgboost_shapely_indiv.PNG)
+![XGBoost_Shap](Images/xgboost_shapely_indiv.PNG){: style="height:200px;width:1800px"}
 
