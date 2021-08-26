@@ -30,6 +30,7 @@ Subsequently, we modify the map to only display schools predicted to be below 50
 In order to compare our predictions to the ground truth, we aggregated the schools up to a province level as survey data was only provided on that level. This measure of evaluation proved challenging for a number of reasons as stated above. 
 
 The following graphics compare predicted and survey data province level connectivity shares on a country map and in a distribution histogram:
+
 ![Thailand_Province](Images/Thailand_province.PNG) 
 ![Thailand_Province](Images/Thailand_distributions.PNG) 
 
