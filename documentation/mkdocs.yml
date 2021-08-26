@@ -30,7 +30,7 @@ nav:
 theme:
     # name: readthedocs
     name: material
-    logo: Images/dssgx_logo_white_wifi.PNG
+    logo: ../Images/dssgx_logo_white_wifi.PNG
     favicon: Images/dssgx_logo.PNG
     features:
      - toc.integrate
