@@ -8,8 +8,8 @@ Tova hails from Philadelphia, PA. She graduated in May 2021 with a degree in Urb
 
 Utku Can is from Izmir, Turkey and spent the last year getting a Masters in Data Science at LMU Munich. Next year he will be continuing at school starting his Masters thesis. The highlight of his summer was creating the data gathering pipeline and working with such incredible teammates and mentors.
 
-![Image](Images/jonny_bio.jpg){: style="height:90px;width:80px"} Jonathan Cook <br></br>
-Jonathan is from a small village in Leicestershire. He graduated in May 2021 with First Class Honours in BSc Theoretical Physics from University College London (UCL). Starting from October 2021, he will be a DeepMind Scholar studying MSc Computational Statistics and Machine Learning, also at UCL. Jonathan has learned so much from the incredibly talented DSSGx UK cohort of fellows and mentors. He is also grateful for the opportunity to work on such a globally critical social issue.
+![Image](Images/jonny_photo.jpg){: style="height:90px;width:80px"} Jonathan Cook <br></br>
+Jonathan is from a small village in Leicestershire, England. He graduated in May 2021 with First Class Honours in BSc Theoretical Physics from University College London (UCL). Starting from October 2021, he will be a DeepMind Scholar studying MSc Computational Statistics and Machine Learning, also at UCL. Jonathan has learned so much from the incredibly talented DSSGx UK cohort of fellows and mentors. He is also grateful for the opportunity to work on such a globally critical social issue.
 
 ![Image](Images/image0.jpeg){: style="height:90px;width:60px"} Jacob Beck <br></br>
 Jacob recently graduated with a Master's degree in Sociology from the University of Mannheim, Germany. Starting in fall 2021 he will be a PhD candidate for the Department of Statistics at LMU Munich. He most enjoyed the collaboration of people from different academic backgrounds and getting insights to Machine Learning approaches. 
