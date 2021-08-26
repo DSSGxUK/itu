@@ -38,7 +38,7 @@ Multiple additional methods could be applied to our existing models and analyses
 
 • Full scoring on Brazil 
 
-Given our existing champion model, all schools outside the featured enumeration areas can now be scored with an estimated level of connectivity. This could be done for a sample of schools as a sanity check or for the entire country, which would yield a similar map to the Giga connectivity map. 
+Given our existing champion model, all schools outside the featured enumeration areas can now be scored with an estimated level of connectivity. This could be done for a sample of schools as a sanity check or for the entire country, which would yield a similar map to the Giga connectivity map. Generally it should be noted, that a representative survey with just a small share of a countries houesholds already sufficed to predict connectivity for the entire country, as for Brazil our analysis featured just around 25.000 out of ca. 70 million total households. Sampling can serve as an efficient tool to get national level insights at relatively low cost.  
 
 
 • Statistical robustness checks 
