@@ -16,7 +16,7 @@ Steps in our model application to new data. Please click here for a complete pre
 
 1. We then load the model from the provided model folder. The following code reloads the model and utilizes it to predict the connectivity on the Thailand dataset:
 
-![picklefile](Images/thailand_pickle_model.PNG){: style="height:350x;width:600px"}
+![picklefile](Images/thailand_pickle_model.PNG){: style="height:350x;width:600px", align=center}
 
 3. After that, we examine the predictions on a map: 
 Here are the maps that show the schools' predictions of relative online population from 0-1 in Thailand. Schools provided by OpenStreetMaps in this case.
@@ -32,8 +32,10 @@ In order to compare our predictions to the ground truth, we aggregated the schoo
 
 The following graphics compare predicted and survey data province level connectivity shares on a country map and in a distribution histogram:
 
-![Thailand_Province](Images/Thailand_province.PNG){: style="height:800px;width:1200px"}
-![Thailand_Province](Images/Thailand_distributions.PNG){: style="height:300px;width:600px"}
+![Thailand_Province](Images/Thailand_province.PNG){: style="height:650px;width:900px"}
+
+![Thailand_Province](Images/Thailand_distributions.PNG){: style="height:300px;width:600px", align=center right}
+
 
 By visual inspection, we can see that the model predictions on a province level diverge greatly from the existing ground truth. While the predictions are roughly normally distributed across the provinces with a small range of predictions, the range of ground truth connectivity shares appear to be much broader. Therefore, we are uncertain about the ability for our Brazil model to accurately predict school areas' internet connectivity in Thailand. Nevertheless, it seems unreasonable that more than half of Thai provinces have a 100% connectivity rate which raises the uncertainty, whether the large average error of 0.35 was caused by the model or the ground truth data. 
 
@@ -92,7 +94,7 @@ The third subsetting step was to exclude the 10th population number decile of th
 
 For each of the priorization lists, we've create a choropleth map of schools and offline population. 
 
-![brazil_offlinepop](Images/brazil_absolute_offpop.PNG){: style="height:800px;width:800px"}
+![brazil_offlinepop](Images/brazil_absolute_offpop.PNG){: style="height:600px;width:650px"}
 
 
 ### Country-level Aggregation 
@@ -104,7 +106,7 @@ If the required data is available, the aggregation can of course also be done to
 
 The following table contains the Brazilian relative and absolute online population according to the aggregated prediction, aggregated ground truth and a third online source. The prediction comes close to the other two values, however it slightly overestimates the Brazil online population.  
 
-![Brazil_Agg](Images/aggregated_table.PNG){: style="height:250px;width:800px"}
+![Brazil_Agg](Images/aggregated_table.PNG){: style="height:250px;width:900px"}
 
 ### Population data remarks
 Generally, some remarks regarding the absolute population data should be considered by users. For the priorization and the country level aggregation, the absolute number has to be treated cautiously due to school area overlap. In this example priorization list, we see that the first 6 schools have the same ground truth connectivity level ("offline_g"). 
