@@ -122,9 +122,7 @@ As part of our winning models, we wanted to see which predictors had high featur
 
 ![feature_importance](Images/RF_ft_impt.PNG)
 
-!! wrong variable names and potentially wrong graphicc
-
-![XGBoost_Shap_impt](Images/Shap_ft_impt.PNG)
+![XGBoost_Shap_impt](Images/xgboost_ft_impt.PNG)
 
 Subsequently, we further investigated the effects of features on the prediction by examining the Shapley values. The Shapely value is an indicator that originally stems from Game Theory but is commonly used in Machine Learning to determine the contribution of a feature to a prediction. The graphic below shows the scattered effects that predictors had on one specific prediction for the champion XGBoost model. In addition, it indicates how relatively high or low values of features impacted the overall prediction.
 
