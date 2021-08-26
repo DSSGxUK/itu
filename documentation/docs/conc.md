@@ -19,15 +19,15 @@ During the project, we have faced certain limitations, in particular in the area
 In the case of Thailand in particular, the team encountered additional challenges with data quality. It was not possible to separate the different sources of error within the dataset from each other. In this specific case, for instance, we could not find out to which degree the geographic aggregation of the target variable or the fact that we used Open Street Maps (OSM) schools impacted model performance and error.
 In addition to the limitations faced, there are more uncertainties that might have affected the findings of our work and its future extensions. Those deserve further scrutiny and discussion.
 
-•	As explained above, we cannot evaluate yet how OSM school data performs compared to official school location     data. If this data source is to be used as an alternative to UNICEF school data, its representativity should be carefully reviewed. 
+-  As explained above, we cannot evaluate yet how OSM school data performs compared to official school location     data. If this data source is to be used as an alternative to UNICEF school data, its representativity should be carefully reviewed. 
 
-•   In the case of Brazil ground truth data on connectivity rates is provided by taking household-level data in to account. The fact, that our result is a connectivity rate on the individual level could potentially bias our results. It is unclear whether household and individual level ratios are interchangeable. 
+-  In the case of Brazil ground truth data on connectivity rates is provided by taking household-level data in to account. The fact, that our result is a connectivity rate on the individual level could potentially bias our results. It is unclear whether household and individual level ratios are interchangeable. 
 
-•	Furthermore, while Facebook data could contribute to producing reliable near real-time estimates of Internet population in some countries or regions, in some cases it could prove insufficiently representative. Since the popularity of Facebook varies over time, between countries or according to demographics, estimating Internet use solely based on it might lead to misinterpretation. For instance, if a large metropolitan area shows a low percentage of Facebook users, this is not yet an indication of low overall Internet penetration, but could be due to the fact that another social media platform (such as Instagram) has overtaken it in popularity. An analysis of the distribution of Facebook users among social groups could improve data interpretation.
+- Furthermore, while Facebook data could contribute to producing reliable near real-time estimates of Internet population in some countries or regions, in some cases it could prove insufficiently representative. Since the popularity of Facebook varies over time, between countries or according to demographics, estimating Internet use solely based on it might lead to misinterpretation. For instance, if a large metropolitan area shows a low percentage of Facebook users, this is not yet an indication of low overall Internet penetration, but could be due to the fact that another social media platform (such as Instagram) has overtaken it in popularity. An analysis of the distribution of Facebook users among social groups could improve data interpretation.
 
-•	Another potential source of bias could be the fact that, in our original approach, survey data is used as ground truth. Survey data are typically prone to bias due to, for instance, misreporting or systematic non-response (e.g., survey respondents have previously stated that they are not using the Internet but in the same survey declared themselves as Facebook users). Importantly, non-response could be problematic since the offline population is less likely to respond to the survey. A potential corroborating measure here could be comparing the distribution of demographic data within the survey (e.g., income, gender) with other open data sources. 
+- Another potential source of bias could be the fact that, in our original approach, survey data is used as ground truth. Survey data are typically prone to bias due to, for instance, misreporting or systematic non-response (e.g., survey respondents have previously stated that they are not using the Internet but in the same survey declared themselves as Facebook users). Importantly, non-response could be problematic since the offline population is less likely to respond to the survey. A potential corroborating measure here could be comparing the distribution of demographic data within the survey (e.g., income, gender) with other open data sources. 
 
-•	Ultimately, if the analysis is extended to more countries, the availability of microdata could introduce bias in the selection of countries to be targeted. It would be fair to assume that countries where no microdata on telecommunications use exists are likely to display lower connectivity levels. Therefore, further research should attempt to provide sound estimates of the offline population in the absence of national microdata, i.e. a global model that can be reliably applied to most countries. Applying a robust model that can accommodate various countries’ circumstances without requiring microdata would then also be fully open-source. 
+- 	Ultimately, if the analysis is extended to more countries, the availability of microdata could introduce bias in the selection of countries to be targeted. It would be fair to assume that countries where no microdata on telecommunications use exists are likely to display lower connectivity levels. Therefore, further research should attempt to provide sound estimates of the offline population in the absence of national microdata, i.e. a global model that can be reliably applied to most countries. Applying a robust model that can accommodate various countries’ circumstances without requiring microdata would then also be fully open-source. 
 
 
 # Next Steps
@@ -36,12 +36,12 @@ In addition to the limitations faced, there are more uncertainties that might ha
 
 Multiple additional methods could be applied to our existing models and analyses. This can either lead to both, a further corroboration of results and the extension/improvement of the existing work.  
 
-• Full scoring on Brazil 
+- Full scoring on Brazil 
 
 Given our existing champion model, all schools outside the featured enumeration areas can now be scored with an estimated level of connectivity. This could be done for a sample of schools as a sanity check or for the entire country, which would yield a similar map to the Giga connectivity map. Generally it should be noted, that a representative survey with just a small share of a countries houesholds already sufficed to predict connectivity for the entire country, as for Brazil our analysis featured just around 25.000 out of ca. 70 million total households. Sampling can serve as an efficient tool to get national level insights at relatively low cost.  
 
 
-• Statistical robustness checks 
+-  Statistical robustness checks 
 
 In particular, two steps could be reasonable additions that take the geographic nature of the data even more into account: 
 
@@ -50,7 +50,7 @@ In particular, two steps could be reasonable additions that take the geographic 
 2.	Performing spatial cross-validation of the models
 
 
-•	Experiment with featured data
+- 	Experiment with featured data
 
 The way some of the model features are configured could be further fine-tuned. 
 
@@ -65,9 +65,9 @@ The way some of the model features are configured could be further fine-tuned.
 
 The existing model can be applied to every country with OSM school location data available. However, model evaluation or model training requires two more components: 
 
-•	Microdata (on household, individual or enumeration area level)
+- 	Microdata (on household, individual or enumeration area level)
 
-•	The respective shapefiles/geolocation of the enumeration area
+- 	The respective shapefiles/geolocation of the enumeration area
 
 Our current experience indicates that analyzing larger geographical aggregates such as provinces diminishes model performance and interpretability. An enumeration area is assumed to be a homogeneous area, whereas the variation of localized connectivity levels within a federal state for instance is expected to be much higher. 
 Further model training
@@ -77,14 +77,14 @@ With more countries being included in the connectivity analysis, more options of
 
 Introducing additional data sources in the modelling can improve its predictive power and replicability.
 
-• Country-level data
+- Country-level data
 
 When extending the models to multiple countries, including country level variables might allow for boosting the original model. Possible additions could be urbanization rate, GDP, public spending on telecommunications or other indices of human/infrastructural development. In doing so, country-specific intercepts are featured in the estimation and will assist accounting for differences in overall connectivity between countries.
 
-• Additional content from survey/school data
+-  Additional content from survey/school data
 
 The original models have so far only been using the necessarily required features of survey and school location data. To keep our approach as generic and replicable to other countries as possible, additional information from these data sources has not been built in the models. However, in order to enhance national models, additional data series from surveys can be usefully integrated (e.g., connectivity-related variables, reasons for (non-)connectivity, demographic information such as age or gender or information on household size or income). Similarly, additional information contained in school location datasets such as pupil count or computer availability could also be used in further analysis (e.g., for estimating the propensity or ease of connection for a specific school). 
 
-• Further data 
+-  Further data 
 
 Arguably, existing models could be improved by adding more features to the training datasets. Possible additions could stem from official data provided by national stakeholders such as Ministries, regulatory authorities, telecom operators and service providers (e.g., coverage and characteristics of existing infrastructure), or digital platforms and monitoring services (such as Google, Facebook or Cisco Analytics). As a minimum requirement, a hypothetical logical connection between feature and target variable should always exist. 
