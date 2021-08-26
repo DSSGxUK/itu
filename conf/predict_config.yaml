@@ -1,15 +1,16 @@
 model:
-    #loc: '../notebooks/'
-    loc: '../files/data/training_sets/'
-    #file: 'FE_v01.csv'
-    file: 'training_set_v1_6.csv'
-    champion: '87/8e79a1deb0894bf8bf65a04f7b725087/artifacts/model/model.pkl'
+    loc: '/data/'
+    file: 'training_sets/Brazil/training_set_v001.csv'
+    population: 'worldpop/school_agg_pop_'
+    school: 'school_loc/brazil_school_geolocation_master.csv'
+    model_loc: '/model/'
+    champion: '25_8_XGBoost.pkl'
 
 features:
-    target: ['A4A_right']
-    predictor: ['avg_d_kbps', 'avg_u_kbps', 'mean_ghm', 'avg_rad_mean',
-    'cf_cvg_mean', 'slope_avg_rad', 'slope_cf_cvg', 'slope_month_avg_rad',
-    'slope_monthcf_cvg', 'estimate_mau', 'population']
+    target: ['target']
+    predictors: ['avg_d_kbps', 'avg_u_kbps', 'mean_ghm', 'mean_avg_rad',
+    'mean_cf_cvg', 'slope_year_avg_rad', 'slope_month_avg_rad', 'estimate_mau',
+     'slope_month_cf_cvg', 'mean_NDVI', 'slope_year_NDVI', 'population']
 
 country: 'Brazil'
 country_3digit: 'bra'
