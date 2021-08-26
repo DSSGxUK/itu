@@ -18,14 +18,14 @@ Satellite Images on a National Level for both Brazil and Thailand:
 
 3. [Global Human Modification Map](Images/ghm_map.html)
 
-In this map, we see the level of Global Human Modification in the last few years within both Brazil and Thailand. For more information on how this dataset was compiled, please see the Data Gathering page. Click on this [Brazil Map](Images/ghm_map.html) to see the country level data. <br></br>
-![GHM_Map](Images/GHM_Schools.PNG)
+    In this map, we see the level of Global Human Modification in the last few years within both Brazil and Thailand. For more information on how this dataset was compiled, please see the Data Gathering page. Click on this [Brazil Map](Images/ghm_map.html) to see the country level data. <br></br>
+    ![GHM_Map](Images/GHM_Schools.PNG)
 
-![Brazil](Images/GHM_Brazil_Thailand.PNG)
+    ![Brazil](Images/GHM_Brazil_Thailand.PNG)
 
 4. Normalized Difference Vegetation Index <br></br>
-Here we see the difference in vegetation between Brazil and Thailand. [Click here](Images/NDVI_Brazil.html) to see the map for Brazil, toggle between the layers to see the entire country and just the school point areas. <br></br>
-![NDVI](Images/NDVI.PNG)
+    Here we see the difference in vegetation between Brazil and Thailand. [Click here](Images/NDVI_Brazil.html) to see the map for Brazil, toggle between the layers to see the entire country and just the school point areas. <br></br>
+    ![NDVI](Images/NDVI.PNG)
 
 
 6. Here we also see GIFs that show the time series change of vegetation from 2000 to 2021. 
