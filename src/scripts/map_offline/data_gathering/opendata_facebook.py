@@ -51,7 +51,10 @@ def get_delivery_estimate(df, access_token, ad_account_id, call_limit, radius):
 
     no_chunks = ceil(len(df)/call_limit)
 
-    print('Calling Facebook Ads API; collection will approximately take ' + str(no_chunks-1) + ' hour(s)!')
+    if no_chunks == 1:
+        print('Calling Facebook Ads API; collection will take few minutes!')
+    else:
+        print('Calling Facebook Ads API; collection will approximately take ' + str(no_chunks-1) + ' hour(s)!')
 
     estimate_dict = {'source_school_id': [], 'estimate_dau': [], 'estimate_mau': [], 'estimate_ready': []}
 
@@ -71,6 +74,8 @@ def get_delivery_estimate(df, access_token, ad_account_id, call_limit, radius):
             [estimate_dict[j].append(i) for i,j in zip(out+list(est), estimate_dict.keys())]
 
         print('Done! Hold for one hour!\nTotal number of requests: ' + str(api._num_requests_attempted) + '\nNumber of remaining chunks: ' + str(no_chunks - c_no - 1))
-        time.sleep(3600)
+
+        if (no_chunks - c_no - 1) != 0:
+            time.sleep(3600)
 
     return pd.DataFrame(estimate_dict)
