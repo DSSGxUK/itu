@@ -52,12 +52,14 @@ We use configs.py to store the variable configurations that should be changed ac
 * `COUNTRY_CODE` - Country code for current use-case, e.g. 'tha'
 * `AVAILABLE_COUNTRIES` - Countries for which survey data with an internet connectivity ground truth variable is available, e.g. list('bra', 'tha')
 * `FEATURES` - List of predictive features for use-case, e.g. list('speedtest', 'opencell', 'facebook', 'population', 'satellite'). This exemplary list contains each of the five open data sources we have used and they must be sytactically entered as shown.
+* `SCHOOL_BUFFER` - Buffer to define school area which will be used to joining survey and population data to schools, in kilometers
 * `SURVEY_AREAS` - Survey dataset geometry join type, 'tiles' if survey will be joined to country administrative region, province, etc., 'enumeration'  if survey will be joined to enumeration area geometries
 * `SATELLITE_COLLECTIONS` - Dictionary that has satellite image collection identifier as a key and image collection band names for multi-band images, e.g. '{'MODIS/006/MOD13A2': ['NDVI']}'
 * `SATELITTE_START_YEAR` - Start year of satellite imagery collection to be used
 * `SATELITTE_END_YEAR` - End year of satellite imagery collection to be used
 * `SATELITTE_BUFFER` - Buffer to define school area for which satellite imagery will be collected, in kilometers
 * `SATELITTE_MAX_CALL_SIZE` - Google Earth Engine API max feature collection length, by default 5000 points
+* `SATELLITE_IMAGE_SCALE` - Satellite Imagery scale of at which to request inputs to a computation is determined from the output. Resolution in meters; used 30 as default in our applications
 * `GOOGLE_SERVICES_ACCOUNT` - Google Services Account to call Google Earth Engine API
 * `GOOGLE_EARTH_ENGINE_API_JSON_KEY` - JSON key file name that is located under satellite folder
 * `OPENCELLID_ACCESS_TOKEN` - OpenCelliD Project API access token as string
@@ -73,7 +75,7 @@ We use configs.py to store the variable configurations that should be changed ac
 
 ## Data Dictionaries
 
-Data dictionaries should be created for each predictor and survey dataset. Dictionaries for the open-source data and Brazilian, Thai and Philippino survey data already exist and should be located in the data/meta/ folder. 
+Data dictionaries should be created for each predictor and survey dataset. Dictionaries for the open-source data and Brazilian, Thai and Philippino survey data already exist and should be located in the data/meta/ folder.
 
 An exemplary data dictionary (for speedtest data) is shown below:
 
