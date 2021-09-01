@@ -44,7 +44,7 @@ securityLevel: 'loose'
 
         5. You can manage the service accounts for your Cloud project by going to the Cloud Console menu (this is the hamburger menu on the side) and selecting IAM & Admin. Once you’ve selected this, select Service accounts on the side. (Choose the project if prompted.)
 
-        6. To create a new service account, click the `CREATE SERVICE ACCOUNT` link. Set service account name and then press done. Then you will see an email that ends with iam.gserviceaccount.com. Copy this whole email and paste it in the configs file where it says `Google Services Account`.
+        6. To create a new service account, click the `CREATE SERVICE ACCOUNT` link. Set service account name and then press done. Then you will see an email that ends with iam.gserviceaccount.com. Copy this whole email and paste it in the configs file where it says `Google Services Account`. Also use [this page](https://signup.earthengine.google.com/#!/service_accounts) to register your service account for use with the Earth Engine API.
 
         7. Once you have a service account, click the three dots under Actions for that account, then click Manage keys. On that page click the button Add Key and then Create New Key. Choose the JSON. Download the JSON key file. Now add the JSON Key File (which should be in your downloads folder) to the data/satellite folder in your directory. Then go to the configs file (in your code editor) and copy and paste the file name of the json file in the field that says `GOOGLE_EARTH_ENGINE_API_JSON_KEY`.
 
