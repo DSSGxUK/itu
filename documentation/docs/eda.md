@@ -37,9 +37,15 @@ Satellite Images on a National Level for both Brazil and Thailand:
 
 ## Speedtest data
 
-## Open Cell ID data
+Here is an image of what the speed test data looks like when zoomed in on Sao Paolo in Brazil. Each square represents a tile with the red areas being areas with higher internet speed.
 
-## Facebook Data
+![speedtest](Images/speedtest_brazil.png)
+
+## Open Cell ID data
+The first image shows the Open Cell ID map visualized in Brazil and the second image shows the map zoomed in on Rio de Janeiro. 
+
+![speedtest](Images/Brazil_OpenCell.png)
+![speedtest](Images/Rio_OpenCell.png)
 
 ## Training Set EDA
 We also did some Exploratory Data Analysis once our training dataset was created. You will not be able to run this on your own until you have run the Data Gathering and Feature Engineering scripts. [Click Here](scripts/testing.html) for the full notebook of explanatory visualizations. [Click here](scripts/testing.ipynb) for the Jupyter Notebook .ipynb file. 
