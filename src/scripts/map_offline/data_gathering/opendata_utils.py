@@ -35,6 +35,12 @@ def tif_to_gdf(tif):
     
     x = np.arange(xstart, xstart + xsize*res, res)
     y = np.arange(ystart, ystart - ysize*res, -res)
+
+    if len(x) != xsize:
+        x = x[:-1]
+    
+    if len(y) != ysize:
+        y = y[:-1]
     
     x = np.tile(x, ysize)
     y = np.repeat(y, xsize)
