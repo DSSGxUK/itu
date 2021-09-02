@@ -14,3 +14,12 @@ Need help getting started?
 - If you are a technical person or otherwise seeking to replicate what we did for your own project, we recommend starting at the Data Gathering section.
 
 - If you are curious about who we are or what datasets we've used, start at About the Team or Exploratory Data Analysis.
+<br></br>
+<br></br>
+<br></br>
+
+Watch below to see a five minute presentation about our project:
+
+<div class="video-wrapper">
+  <iframe width="1280" height="720" src="Images/video_presentation.mp4" frameborder="0" allowfullscreen></iframe>
+</div>

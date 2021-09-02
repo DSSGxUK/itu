@@ -50,8 +50,9 @@ The first image shows the Open Cell ID map visualized in Brazil and the second i
 ## Facebook data
 Here, the first image shows a homogeneous looking plot of monthly active Facebook users in Brazil, but the second image, zoomed in on Sau Paulo, shows how the city centre is a localised hot-spot of Facebook users.
 
-![facebook](Images/brazil_mau.png)
-![facebook](Images/saupaulo_mau.png)
+![facebook](Images/brazil_mau.png){: style="height:400px;width:600px"}
+<br></br>
+![facebook_2](Images/saupaulo_mau.png){: style="height:400px;width:600px"}
 
 ## Training Set EDA
 We also did some Exploratory Data Analysis once our training dataset was created. You will not be able to run this on your own until you have run the Data Gathering and Feature Engineering scripts. [Click Here](scripts/testing.html) for the full notebook of explanatory visualizations. [Click here](scripts/testing.ipynb) for the Jupyter Notebook .ipynb file. 
